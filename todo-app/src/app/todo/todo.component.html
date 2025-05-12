@@ -1,0 +1,105 @@
+<div class="min-h-screen flex items-center justify-center bg-[#9462d3] p-4">
+  <div class="bg-white rounded-3xl shadow-lg w-full max-w-md p-8">
+    <h1 class="text-2xl font-bold mb-8 text-center">To Do List</h1>
+
+    <!-- Search Bar -->
+    <div class="mb-6">
+      <mat-form-field class="w-full">
+        <mat-icon matPrefix class="mr-2 text-gray-500">search</mat-icon>
+        <input 
+          matInput 
+          [(ngModel)]="searchText" 
+          (ngModelChange)="onSearchChange()" 
+          placeholder="Search tasks" 
+          class="py-2"
+        />
+      </mat-form-field>
+    </div>
+
+    <!-- Add Todo Form -->
+    <div class="flex gap-4 mb-6">
+      <mat-form-field class="flex-1">
+        <input 
+          matInput 
+          [(ngModel)]="newTodoTitle" 
+          placeholder="Add a new task" 
+          class="py-2"
+        />
+      </mat-form-field>
+      <button 
+        mat-mini-fab 
+        color="primary" 
+        class="bg-[#9462d3] text-white" 
+        (click)="addTodo()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <!-- Todo List -->
+    <div class="space-y-6">
+      <div *ngFor="let todo of filteredTodos" class="flex">
+        <div class="flex-shrink-0 mt-1">
+          <mat-checkbox 
+            [(ngModel)]="todo.completed" 
+            (change)="updateTodo(todo)" 
+            [color]="'primary'"
+            [ngClass]="{'text-[#9462d3] border-[#9462d3]': todo.completed}"
+          ></mat-checkbox>
+        </div>
+        
+        <div class="ml-4 flex-1">
+          <div *ngIf="editingTodo?.id !== todo.id; else editTemplate">
+            <div class="flex justify-between items-start">
+              <div>
+                <span 
+                  [ngClass]="{'line-through text-gray-500': todo.completed}" 
+                  class="text-base font-medium"
+                >
+                  {{ todo.title }}
+                </span>
+                <p class="text-gray-500 text-sm mt-1">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                </p>
+              </div>
+              <div class="flex space-x-1">
+                <button 
+                  mat-icon-button 
+                  (click)="startEdit(todo)" 
+                  class="text-gray-500 hover:text-[#9462d3]"
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button 
+                  mat-icon-button 
+                  (click)="deleteTodo(todo.id)" 
+                  class="text-gray-500 hover:text-red-500"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <ng-template #editTemplate>
+            <div class="flex items-center">
+              <mat-form-field class="flex-1 mr-2">
+                <input matInput [(ngModel)]="editTodoTitle" placeholder="Edit task" />
+              </mat-form-field>
+              <button mat-icon-button (click)="saveEdit()" class="text-green-600">
+                <mat-icon>check</mat-icon>
+              </button>
+              <button mat-icon-button (click)="cancelEdit()" class="text-red-600">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      
+      <div *ngIf="filteredTodos.length === 0" class="text-center text-gray-500 py-4">
+        No tasks found
+      </div>
+    </div>
+  </div>
+</div>

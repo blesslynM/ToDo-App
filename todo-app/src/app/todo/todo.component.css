@@ -1,0 +1,37 @@
+.mat-checkbox-checked.mat-primary .mat-checkbox-background {
+  background-color: #9462d3 !important;
+}
+
+::ng-deep .mat-form-field-underline {
+  background-color: #e2e8f0 !important;
+}
+
+::ng-deep .mat-form-field-ripple {
+  background-color: #9462d3 !important;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0.75rem !important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
+  color: #6b7280 !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #9462d3 !important;
+}
+
+::ng-deep .mat-checkbox-frame {
+  border-color: #9462d3 !important;
+  border-width: 2px !important;
+}
+
+::ng-deep .mat-mini-fab.mat-primary {
+  background-color: #9462d3 !important;
+}
+
+::ng-deep .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background,
+::ng-deep .mat-checkbox-checked.mat-primary .mat-checkbox-background {
+  background-color: #9462d3 !important;
+}
